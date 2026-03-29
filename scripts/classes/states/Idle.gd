@@ -2,7 +2,8 @@ extends State
 class_name IdleState
 
 func enter():
-	print("entered idle state!")
+	#print("entered idle state!")
+	pass
 
 func update(_delta: float):
 	if Input.is_action_just_pressed("mouse_left"):

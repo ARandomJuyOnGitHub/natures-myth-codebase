@@ -4,7 +4,8 @@ class_name MovingState
 @onready var anim_sprite = get_parent().get_parent().get_node("AnimatedSprite2D")
 
 func enter():
-	print("entered moving state!")
+	#print("entered moving state!")
+	pass
 
 func update(_delta: float):
 	if Input.is_action_just_pressed("mouse_left"):

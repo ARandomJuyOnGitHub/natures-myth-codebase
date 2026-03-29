@@ -9,7 +9,7 @@ var target_position: Vector2
 var rope_length: float
 
 func enter():
-	print("entered Grappling state!")
+	#print("entered Grappling state!")
 	line.visible = true
 	line.clear_points()
 	line.add_point(Vector2.ZERO)

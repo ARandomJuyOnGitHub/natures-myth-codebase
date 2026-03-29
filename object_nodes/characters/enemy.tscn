@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://w8tayayqy3bh" path="res://scripts/classes/ground_enemy.gd" id="1_d7iib"]
 [ext_resource type="Texture2D" uid="uid://c6xqpuyg0oj2n" path="res://assets/images/enemy_placeholder.png" id="1_q51aw"]
+[ext_resource type="Script" uid="uid://dgbnfhf1ftepc" path="res://scripts/conponents/health_conponent.gd" id="3_05ab1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4uksa"]
 radius = 19.0
@@ -23,3 +24,7 @@ target_position = Vector2(25, 0)
 [node name="VerticalRayCast" type="RayCast2D" parent="." unique_id=527190400]
 position = Vector2(25, 0)
 target_position = Vector2(0, 25)
+
+[node name="HealthConponent" type="Node" parent="." unique_id=35169912]
+script = ExtResource("3_05ab1")
+metadata/_custom_type_script = "uid://dgbnfhf1ftepc"

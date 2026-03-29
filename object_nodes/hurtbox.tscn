@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dlbnvvmcbbu6f"]
+
+[ext_resource type="Script" uid="uid://dudup5k82mfkb" path="res://scripts/general/hurtbox.gd" id="1_xiael"]
+
+[node name="Hurtbox" type="Area2D" unique_id=168358218]
+collision_mask = 2
+script = ExtResource("1_xiael")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

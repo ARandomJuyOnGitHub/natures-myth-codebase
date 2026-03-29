@@ -2,7 +2,7 @@ extends State
 class_name JumpingState
 
 func enter():
-	print("entered Jumping state!")
+	#print("entered Jumping state!")
 	subject.velocity.y = subject.jump_velocity
 
 func update(_delta: float):

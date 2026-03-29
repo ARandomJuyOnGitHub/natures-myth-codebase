@@ -5,7 +5,7 @@ class_name AirborneState
 var move: bool = false
 
 func enter():
-	print("entered Airborne State")
+	#print("entered Airborne State")
 	move = false
 	timer.start(.15)
 

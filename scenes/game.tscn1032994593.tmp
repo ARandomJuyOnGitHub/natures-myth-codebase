@@ -4,16 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://ut4tbhsaspdr" path="res://object_nodes/characters/player.tscn" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://ci28j361jqu0e" path="res://object_nodes/classes/state_machine.tscn" id="3_lnu2h"]
 [ext_resource type="Script" uid="uid://c4camrmnpmod6" path="res://scripts/general/player_core.gd" id="3_p57ef"]
-[ext_resource type="Script" uid="uid://c7k22u6kafxi4" path="res://scripts/classes/states/Idle.gd" id="4_iywne"]
-[ext_resource type="Script" uid="uid://curu4s03rj2u7" path="res://scripts/classes/states/Moving.gd" id="5_p57ef"]
-[ext_resource type="Script" uid="uid://v3vrix7wbowb" path="res://scripts/classes/states/Jumping.gd" id="7_u5sy4"]
+[ext_resource type="Script" uid="uid://c7k22u6kafxi4" path="res://scripts/classes/states/idle.gd" id="4_iywne"]
+[ext_resource type="Script" uid="uid://curu4s03rj2u7" path="res://scripts/classes/states/moving.gd" id="5_p57ef"]
+[ext_resource type="Script" uid="uid://v3vrix7wbowb" path="res://scripts/classes/states/jumping.gd" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://dcvgs8tn5vkap" path="res://scripts/classes/states/grappling.gd" id="8_gee14"]
 [ext_resource type="Script" uid="uid://c2uiswvchkb8u" path="res://scripts/classes/states/airborne.gd" id="9_0tnpc"]
 [ext_resource type="Script" uid="uid://b12ro7rpqsari" path="res://scripts/classes/states/launch.gd" id="10_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://bpy6hb2gps4yw" path="res://object_nodes/interacables/test_block.tscn" id="10_vtaks"]
-[ext_resource type="Script" uid="uid://ep5y4onfrvve" path="res://scripts/general/grapple_controller.gd" id="11_trtic"]
+[ext_resource type="Script" uid="uid://ep5y4onfrvve" path="res://scripts/general/grapple_controller.gd" id="11_kvuet"]
 [ext_resource type="PackedScene" uid="uid://dec23vvmxfajw" path="res://object_nodes/characters/enemy.tscn" id="12_dinhu"]
-[ext_resource type="PackedScene" uid="uid://dlbnvvmcbbu6f" path="res://object_nodes/hurtbox.tscn" id="13_kvuet"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gee14"]
 texture = ExtResource("1_lnu2h")
@@ -179,11 +178,7 @@ texture = ExtResource("1_lnu2h")
 
 [sub_resource type="TileSet" id="TileSet_p57ef"]
 physics_layer_0/collision_layer = 1
-physics_layer_0/collision_mask = 7
 sources/1 = SubResource("TileSetAtlasSource_gee14")
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_kvuet"]
-radius = 11.129682
 
 [node name="Game" type="Node2D" unique_id=208252950]
 
@@ -223,8 +218,8 @@ metadata/_custom_type_script = "uid://v3vrix7wbowb"
 
 [node name="GrapplingState" type="Node" parent="Player/GroundStates" unique_id=1622147372 node_paths=PackedStringArray("ray", "line")]
 script = ExtResource("8_gee14")
-ray = NodePath("../../Grapple/RayCast2D")
-line = NodePath("../../Grapple/Line2D")
+ray = NodePath("../../GrappleControler/RayCast2D")
+line = NodePath("../../GrappleControler/Line2D")
 metadata/_custom_type_script = "uid://dcvgs8tn5vkap"
 
 [node name="AirborneState" type="Node" parent="Player/GroundStates" unique_id=1317579937]
@@ -235,21 +230,20 @@ metadata/_custom_type_script = "uid://c2uiswvchkb8u"
 
 [node name="LaunchingState" type="Node" parent="Player/GroundStates" unique_id=450939854 node_paths=PackedStringArray("ray", "line")]
 script = ExtResource("10_kvpfn")
-ray = NodePath("../../Grapple/RayCast2D")
-line = NodePath("../../Grapple/Line2D")
+ray = NodePath("../../GrappleControler/RayCast2D")
+line = NodePath("../../GrappleControler/Line2D")
 metadata/_custom_type_script = "uid://b12ro7rpqsari"
 
 [node name="Timer" type="Timer" parent="Player/GroundStates/LaunchingState" unique_id=111943067]
 
-[node name="Grapple" type="Node2D" parent="Player" unique_id=369353093 node_paths=PackedStringArray("player")]
-script = ExtResource("11_trtic")
+[node name="GrappleControler" type="Node2D" parent="Player" unique_id=369353093 node_paths=PackedStringArray("player")]
+script = ExtResource("11_kvuet")
 player = NodePath("..")
 
-[node name="RayCast2D" type="RayCast2D" parent="Player/Grapple" unique_id=1275399579]
+[node name="RayCast2D" type="RayCast2D" parent="Player/GrappleControler" unique_id=1275399579]
 target_position = Vector2(800, 0)
-collision_mask = 7
 
-[node name="Line2D" type="Line2D" parent="Player/Grapple" unique_id=1480926301]
+[node name="Line2D" type="Line2D" parent="Player/GrappleControler" unique_id=1480926301]
 points = PackedVector2Array(0, 0, 0, 0)
 default_color = Color(0, 0, 0, 1)
 
@@ -279,13 +273,6 @@ position = Vector2(1884, -326)
 
 [node name="Enemy" parent="." unique_id=1746869062 groups=["Enemies"] instance=ExtResource("12_dinhu")]
 position = Vector2(418, 53)
-collision_layer = 4
-
-[node name="Hurtbox" parent="Enemy" unique_id=168358218 instance=ExtResource("13_kvuet")]
-scale = Vector2(1.4399903, 1.5599988)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Hurtbox" unique_id=132571402]
-shape = SubResource("CircleShape2D_kvuet")
 
 [connection signal="timeout" from="Player/GroundStates/AirborneState/Timer" to="Player/GroundStates/AirborneState" method="_on_timer_timeout"]
 [connection signal="timeout" from="Player/GroundStates/LaunchingState/Timer" to="Player/GroundStates/LaunchingState" method="_on_timer_timeout"]

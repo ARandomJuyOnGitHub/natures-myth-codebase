@@ -8,7 +8,7 @@ class_name LaunchingState
 @onready var color: ColorRect = get_parent().get_parent().get_parent().get_node("ColorRect")
 
 func enter():
-	print("Launching")
+	#print("Launching")
 	timer.start(.15)
 	
 	line.visible = true
