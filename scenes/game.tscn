@@ -11,8 +11,10 @@
 [ext_resource type="Script" uid="uid://c2uiswvchkb8u" path="res://scripts/classes/states/airborne.gd" id="9_0tnpc"]
 [ext_resource type="Script" uid="uid://b12ro7rpqsari" path="res://scripts/classes/states/launch.gd" id="10_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://bpy6hb2gps4yw" path="res://object_nodes/interacables/test_block.tscn" id="10_vtaks"]
+[ext_resource type="Script" uid="uid://dtyxxtw8ucc80" path="res://scripts/classes/states/hurt.gd" id="11_ca42v"]
 [ext_resource type="Script" uid="uid://ep5y4onfrvve" path="res://scripts/general/grapple_controller.gd" id="11_trtic"]
 [ext_resource type="PackedScene" uid="uid://dec23vvmxfajw" path="res://object_nodes/characters/enemy.tscn" id="12_dinhu"]
+[ext_resource type="PackedScene" uid="uid://c4a8243k52r2" path="res://object_nodes/health_conponent.tscn" id="12_ir15t"]
 [ext_resource type="PackedScene" uid="uid://dlbnvvmcbbu6f" path="res://object_nodes/hurtbox.tscn" id="13_kvuet"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gee14"]
@@ -195,6 +197,10 @@ tile_set = SubResource("TileSet_p57ef")
 [node name="Player" parent="." unique_id=1925105641 instance=ExtResource("2_lnu2h")]
 position = Vector2(209, 165)
 script = ExtResource("3_p57ef")
+health = 3
+stun_time = 1
+i_frames_duration = 2
+knock_back_force = 300
 movement_speed = 300
 acceleration = 1.0
 deceleration = 1.0
@@ -241,6 +247,12 @@ metadata/_custom_type_script = "uid://b12ro7rpqsari"
 
 [node name="Timer" type="Timer" parent="Player/GroundStates/LaunchingState" unique_id=111943067]
 
+[node name="DamagedState" type="Node" parent="Player/GroundStates" unique_id=29064502]
+script = ExtResource("11_ca42v")
+metadata/_custom_type_script = "uid://dtyxxtw8ucc80"
+
+[node name="Timer" type="Timer" parent="Player/GroundStates/DamagedState" unique_id=1633949736]
+
 [node name="Grapple" type="Node2D" parent="Player" unique_id=369353093 node_paths=PackedStringArray("player")]
 script = ExtResource("11_trtic")
 player = NodePath("..")
@@ -252,6 +264,11 @@ collision_mask = 7
 [node name="Line2D" type="Line2D" parent="Player/Grapple" unique_id=1480926301]
 points = PackedVector2Array(0, 0, 0, 0)
 default_color = Color(0, 0, 0, 1)
+
+[node name="HealthConponent" parent="Player" unique_id=1819969011 instance=ExtResource("12_ir15t")]
+
+[node name="IFrames" type="Timer" parent="Player" unique_id=442146608]
+one_shot = true
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1726325644]
 z_index = 100
@@ -289,3 +306,5 @@ shape = SubResource("CircleShape2D_kvuet")
 
 [connection signal="timeout" from="Player/GroundStates/AirborneState/Timer" to="Player/GroundStates/AirborneState" method="_on_timer_timeout"]
 [connection signal="timeout" from="Player/GroundStates/LaunchingState/Timer" to="Player/GroundStates/LaunchingState" method="_on_timer_timeout"]
+[connection signal="timeout" from="Player/GroundStates/DamagedState/Timer" to="Player/GroundStates/DamagedState" method="_on_timer_timeout"]
+[connection signal="damage_dealt" from="Player/HealthConponent" to="Player" method="_on_health_conponent_damage_dealt"]

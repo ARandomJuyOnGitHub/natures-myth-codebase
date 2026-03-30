@@ -29,6 +29,10 @@ func _physics_process(delta: float) -> void:
 	if current_state:
 		current_state.physics_update(delta)
 
+
+func get_state():
+	return current_state
+
 func on_transition(state: State, target_state_name: String):
 	if target_state_name == current_state.name:
 		return

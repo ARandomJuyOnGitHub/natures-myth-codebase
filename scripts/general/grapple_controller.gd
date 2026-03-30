@@ -13,10 +13,9 @@ func check_ray():
 	if ray.is_colliding():
 		var collider = ray.get_collider()
 		if collider.is_class("CharacterBody2D") and collider.is_in_group("Enemies"):
-			collider.health_handler.deal_damage(1)
+			collider.health_handler.deal_damage(1, player)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("mouse_left"):
-		print("if yay")
 		check_ray()
