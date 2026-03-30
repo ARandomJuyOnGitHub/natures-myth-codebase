@@ -150,7 +150,6 @@ position = Vector2(140, 34)
 position_smoothing_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=30498298]
-visible = false
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_qwbsm")
 
@@ -159,6 +158,7 @@ position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_mufel")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=372093531]
+visible = false
 scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_qwbsm")
 animation = &"walk"

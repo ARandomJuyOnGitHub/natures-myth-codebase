@@ -38,10 +38,11 @@ func _on_health_conponent_damage_dealt(body: Node2D) -> void:
 	if !i_frames.is_stopped():
 		health_conponent.health_value += 1 # a bit scuffed but works for now
 		return
-	
+
 	i_frames.start(i_frames_duration)
-	var direction = body.position.direction_to(position)
-	print(direction)
+	var direction = Vector2(cos(PI/3),-sin(PI/3)) # 60 degrees
+	var side = position.x - body.global_position.x
+	direction.x *= sign(side)
 	velocity = direction * knock_back_force
 	
 	var current_state = state_machine.get_state()
