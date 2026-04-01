@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dec23vvmxfajw"]
 
-[ext_resource type="Script" uid="uid://w8tayayqy3bh" path="res://scripts/classes/ground_enemy.gd" id="1_d7iib"]
+[ext_resource type="Script" uid="uid://w8tayayqy3bh" path="res://scripts/general/ground_enemy.gd" id="1_d7iib"]
 [ext_resource type="Texture2D" uid="uid://c6xqpuyg0oj2n" path="res://assets/images/enemy_placeholder.png" id="1_q51aw"]
 [ext_resource type="PackedScene" uid="uid://c4a8243k52r2" path="res://object_nodes/health_conponent.tscn" id="3_05ab1"]
 
