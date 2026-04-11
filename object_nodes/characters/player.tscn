@@ -157,10 +157,6 @@ animations = [{
 collision_layer = 2
 script = ExtResource("1_g2els")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1152043165]
-position = Vector2(140, 34)
-position_smoothing_enabled = true
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=30498298]
 visible = false
 scale = Vector2(0.1, 0.1)
