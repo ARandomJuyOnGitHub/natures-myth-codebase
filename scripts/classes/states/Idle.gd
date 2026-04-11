@@ -1,11 +1,23 @@
 extends State
 class_name IdleState
 
+var anim_sprite: AnimatedSprite2D
+
 func enter():
 	#print("entered idle state!")
+	if subject.sprite == null:
+		await subject.ready
+	anim_sprite = subject.sprite
+	anim_sprite.play("idle")
 	pass
 
+func exit():
+	print("exit")
+	anim_sprite.stop()
+
 func update(_delta: float):
+	print(anim_sprite.animation)
+	
 	if Input.is_action_just_pressed("mouse_left"):
 		Transition.emit(self, "GrapplingState")
 	

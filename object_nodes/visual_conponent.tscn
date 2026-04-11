@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://drf2co2t3r02j"]
+
+[ext_resource type="Script" uid="uid://b3u80i7y0a5fr" path="res://scripts/conponents/visual_conponent.gd" id="1_yc0f7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yc0f7"]
+
+[node name="VisualConponent" type="Node2D" unique_id=172092087]
+script = ExtResource("1_yc0f7")
+array = null
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1015399245]
+sprite_frames = SubResource("SpriteFrames_yc0f7")

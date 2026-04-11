@@ -18,6 +18,9 @@ func update(_delta: float):
 func physics_update(_delta: float):
 	var direction = get_move_direction()
 	subject.velocity.x = direction * subject.movement_speed
+	
+	if direction != 0:
+		subject.facing_direction = direction
 
 func get_move_direction():
 	return Input.get_axis("move_left", "move_right")

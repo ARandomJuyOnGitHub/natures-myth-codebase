@@ -24,6 +24,9 @@ func  physics_update(delta: float):
 			target,
 			600 * delta
 		)
+		
+		if direction != 0:
+			subject.facing_direction = direction
 
 func update(_delta: float):
 	if Input.is_action_just_pressed("mouse_left"):

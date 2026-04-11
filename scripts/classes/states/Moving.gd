@@ -1,11 +1,16 @@
 extends State
 class_name MovingState
 
-@onready var anim_sprite = get_parent().get_parent().get_node("AnimatedSprite2D")
+var anim_sprite: AnimatedSprite2D
 
 func enter():
 	#print("entered moving state!")
+	anim_sprite = subject.sprite
+	anim_sprite.play("walk")
 	pass
+
+func exit():
+	anim_sprite.stop()
 
 func update(_delta: float):
 	if Input.is_action_just_pressed("mouse_left"):
@@ -22,14 +27,13 @@ func physics_update(_delta: float):
 	if direction == 0:
 		Transition.emit(self, "IdleState")
 		return
+	subject.facing_direction = direction
 	
 	subject.velocity.x = lerp(
 		subject.velocity.x,
 		subject.movement_speed * direction,
 		subject.acceleration
 	)
-	
-	anim_sprite.play("walk")
 	
 	
 func get_move_direction():

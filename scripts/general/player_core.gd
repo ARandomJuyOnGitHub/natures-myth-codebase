@@ -21,9 +21,16 @@ extends CharacterBody2D
 @onready var health_conponent: HealthConponent = $HealthConponent
 @onready var state_machine: StateMachine = $GroundStates
 @onready var i_frames: Timer = $IFrames
+@onready var sprite = $AnimatedSprite2D
+
+var facing_direction = 1
 
 func  _ready() -> void:
 	health_conponent.set_health(health)
+
+func  _process(delta: float) -> void:
+	if sign(facing_direction) != sign(sprite.scale.x):
+		sprite.scale.x *= -1
 
 # will probably have to add more later
 func _physics_process(delta: float) -> void:
@@ -31,7 +38,6 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	move_and_slide()
-
 
 func _on_health_conponent_damage_dealt(body: Node2D) -> void:
 	# if i frames are active

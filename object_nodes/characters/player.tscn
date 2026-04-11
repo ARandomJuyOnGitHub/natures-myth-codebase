@@ -7,6 +7,10 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mufel"]
 height = 34.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mufel"]
+atlas = ExtResource("3_mufel")
+region = Rect2(3758, 3840, 1879, 1920)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_vh561"]
 atlas = ExtResource("3_mufel")
 region = Rect2(0, 0, 1879, 1920)
@@ -83,6 +87,14 @@ region = Rect2(3758, 5760, 1879, 1920)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_mufel")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_vh561")
 }, {
 "duration": 1.0,
@@ -150,6 +162,7 @@ position = Vector2(140, 34)
 position_smoothing_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=30498298]
+visible = false
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_qwbsm")
 
@@ -158,7 +171,7 @@ position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_mufel")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=372093531]
-visible = false
-scale = Vector2(0.05, 0.05)
+position = Vector2(1, 4)
+scale = Vector2(0.02, 0.02)
 sprite_frames = SubResource("SpriteFrames_qwbsm")
-animation = &"walk"
+animation = &"idle"
