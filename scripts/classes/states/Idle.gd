@@ -12,12 +12,9 @@ func enter():
 	pass
 
 func exit():
-	print("exit")
 	anim_sprite.stop()
 
 func update(_delta: float):
-	print(anim_sprite.animation)
-	
 	if Input.is_action_just_pressed("mouse_left"):
 		Transition.emit(self, "GrapplingState")
 	

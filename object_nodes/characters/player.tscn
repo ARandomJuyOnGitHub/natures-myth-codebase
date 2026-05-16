@@ -150,7 +150,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 15.0
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=1925105641]
@@ -170,4 +170,5 @@ shape = SubResource("CapsuleShape2D_mufel")
 position = Vector2(1, 4)
 scale = Vector2(0.02, 0.02)
 sprite_frames = SubResource("SpriteFrames_qwbsm")
-animation = &"idle"
+animation = &"walk"
+frame_progress = 0.6568984
